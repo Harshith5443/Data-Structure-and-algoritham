@@ -1,0 +1,36 @@
+markdown
+# Recursion – Print 1 to 5
+
+## Question 1
+
+**Problem:**  
+Write a Java program using recursion to print numbers from 1 to 5.
+
+### Java Code
+
+```java
+public class P1 {
+
+    public static void print(int i) {
+
+        if (i <= 5) {
+            System.out.println(i);
+            print(i + 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        print(1);
+    }
+}
+```
+
+### Sample Output
+
+```text
+1
+2
+3
+4
+5
+```
