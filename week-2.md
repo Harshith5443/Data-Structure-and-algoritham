@@ -684,3 +684,265 @@ Value 50 deleted from index 1 : 1
 40 -2147483648 60
 70 -2147483648 90
 ```
+
+
+````
+````markdown
+# Stack
+
+## Question 3
+
+**Problem:**  
+Write a Java program to implement a Stack using an array with the following operations:
+
+- Creation
+- Push
+- Pop
+- Peek
+- Is Empty
+- Is Full
+- Display
+- Delete Stack
+
+### Java Code
+
+```java
+class Stack_prgam {
+
+    int[] stack;
+    int top;
+
+    // Creation
+    public void creation(int size) {
+
+        stack = new int[size];
+        top = -1;
+    }
+
+    // Check Empty
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    // Check Full
+    public boolean isFull() {
+        return top == stack.length - 1;
+    }
+
+    // Push operation
+    public void push(int value) {
+
+        if (isFull()) {
+
+            System.out.println("Stack is Full");
+
+        } else {
+
+            stack[++top] = value;
+            System.out.println(value + " pushed into stack");
+        }
+    }
+
+    // Pop operation
+    public void pop() {
+
+        if (isEmpty()) {
+
+            System.out.println("Stack is Empty");
+
+        } else {
+
+            int data = stack[top];
+            top--;
+
+            System.out.println(data + " popped from stack");
+        }
+    }
+
+    // Peek operation
+    public void peek() {
+
+        if (isEmpty()) {
+
+            System.out.println("Stack is Empty");
+
+        } else {
+
+            System.out.println("Top element: " + stack[top]);
+        }
+    }
+
+    // Delete Stack
+    public void deleteStack() {
+
+        stack = null;
+
+        System.out.println("Stack deleted");
+    }
+
+    // Display operation
+    public void display() {
+
+        if (isEmpty()) {
+
+            System.out.println("Stack is Empty");
+
+        } else {
+
+            System.out.println("Stack elements:");
+
+            for (int i = top; i >= 0; i--) {
+                System.out.println(stack[i]);
+            }
+        }
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Stack_prgam s = new Stack_prgam();
+
+        s.creation(5);
+
+        s.push(10);
+        s.push(20);
+        s.push(30);
+
+        s.display();
+
+        s.peek();
+
+        s.pop();
+
+        s.display();
+
+        s.deleteStack();
+    }
+}
+```
+
+### Sample Output
+
+```text
+10 pushed into stack
+20 pushed into stack
+30 pushed into stack
+
+Stack elements:
+30
+20
+10
+
+Top element: 30
+
+30 popped from stack
+
+Stack elements:
+20
+10
+
+Stack deleted
+```
+
+
+````
+````markdown
+# Browser History Using Stack
+
+## Question 4
+
+**Problem:**  
+Write a Java program to implement browser page navigation using two stacks for previous and next pages.
+
+### Java Code
+
+```java
+import java.util.Stack;
+
+class Web {
+
+    private String currentPage;
+    private Stack<String> bws;
+    private Stack<String> fws;
+
+    public Web() {
+
+        bws = new Stack<String>();
+        fws = new Stack<String>();
+
+        this.currentPage = "Home Page";
+    }
+
+    // Visit New Page
+    public void visitPage(String newPage) {
+
+        bws.push(currentPage);
+        currentPage = newPage;
+
+        fws.clear();
+    }
+
+    // Previous Page
+    public void previousPage() {
+
+        if (!bws.isEmpty()) {
+
+            fws.push(currentPage);
+            currentPage = bws.pop();
+        }
+    }
+
+    // Next Page
+    public void nextPage() {
+
+        if (!fws.isEmpty()) {
+
+            bws.push(currentPage);
+            currentPage = fws.pop();
+        }
+    }
+
+    // Get Current Page
+    public String getCurrentPage() {
+
+        return currentPage;
+    }
+}
+
+public class Web_MainClass {
+
+    public static void main(String[] args) {
+
+        Web web = new Web();
+
+        web.visitPage("Flipkart");
+        web.visitPage("Flipkart Home Page");
+        web.visitPage("Rc Toys");
+
+        web.previousPage();
+
+        System.out.println(web.getCurrentPage());
+    }
+}
+
+
+````
+````markdown
+
+
+````
+````markdown
+
+
+````
+````markdown
+
+
+````
+````markdown
+
+
+````
+````markdown
