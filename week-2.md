@@ -930,7 +930,183 @@ public class Web_MainClass {
 
 ````
 ````markdown
+# Queue
 
+## Question 2
+
+**Problem:**  
+Write a Java program to implement a Queue using an array with the following operations:
+
+- Creation
+- Enqueue
+- Dequeue
+- Peek
+- Is Empty
+- Is Full
+- Display
+- Delete Queue
+
+### Java Code
+
+```java
+package ds_pro;
+
+class QueueOp {
+
+    int[] queue;
+    int front;
+    int rear;
+
+    // Creation
+    QueueOp(int size) {
+
+        queue = new int[size];
+
+        front = -1;
+        rear = -1;
+    }
+
+    // Check Full
+    public boolean isFull() {
+
+        return rear == queue.length - 1;
+    }
+
+    // Check Empty
+    public boolean isEmpty() {
+
+        return front == -1;
+    }
+
+    // Enqueue
+    public void enqueue(int value) {
+
+        if (isFull()) {
+
+            System.out.println("Queue is Full");
+
+        } else {
+
+            if (rear == -1) {
+                front = 0;
+            }
+
+            queue[++rear] = value;
+
+            System.out.println(value + " inserted into queue");
+        }
+    }
+
+    // Dequeue
+    public void dequeue() {
+
+        if (isEmpty()) {
+
+            System.out.println("Queue is Empty");
+
+        } else {
+
+            int value = queue[front++];
+
+            System.out.println(value + " deleted from queue");
+
+            if (front > rear) {
+                front = -1;
+                rear = -1;
+            }
+        }
+    }
+
+    // Peek
+    public void peek() {
+
+        if (isEmpty()) {
+
+            System.out.println("Queue is Empty");
+
+        } else {
+
+            System.out.println(
+                "Front element: " + queue[front]
+            );
+        }
+    }
+
+    // Display
+    public void display() {
+
+        if (isEmpty()) {
+
+            System.out.println("Queue is Empty");
+
+        } else {
+
+            System.out.println("Queue elements:");
+
+            for (int i = front; i <= rear; i++) {
+                System.out.println(queue[i]);
+            }
+        }
+    }
+
+    // Delete Queue
+    public void deleteQueue() {
+
+        queue = null;
+        front = -1;
+        rear = -1;
+
+        System.out.println("Queue deleted");
+    }
+
+    public static void main(String[] args) {
+
+        QueueOp q = new QueueOp(5);
+
+        System.out.println(q.isFull());
+        System.out.println(q.isEmpty());
+
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+
+        q.display();
+
+        q.peek();
+
+        q.dequeue();
+
+        q.display();
+
+        q.deleteQueue();
+    }
+}
+```
+
+### Sample Output
+
+```text
+false
+true
+10 inserted into queue
+20 inserted into queue
+30 inserted into queue
+
+Queue elements:
+10
+20
+30
+
+Front element: 10
+
+10 deleted from queue
+
+Queue elements:
+20
+30
+
+Queue deleted
+```
 
 ````
 ````markdown
