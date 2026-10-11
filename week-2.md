@@ -1110,6 +1110,109 @@ Queue deleted
 
 ````
 ````markdown
+# Printer Queue Using LinkedList
+
+## Question 3
+
+**Problem:**  
+Write a Java program to implement a printer queue using `LinkedList`. Add documents to the queue and print them in FIFO (First In, First Out) order.
+
+### Java Code
+
+```java
+package ds_pro;
+
+import java.util.LinkedList;
+
+class Document {
+
+    private String name;
+    private int pages;
+
+    public Document(String name, int pages) {
+        this.name = name;
+        this.pages = pages;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+}
+
+// Printer Class
+class Printer {
+
+    private LinkedList<Document> queue = new LinkedList<>();
+
+    // Add Document to Queue
+    public void addToPrint(Document doc) {
+
+        queue.add(doc);
+
+        System.out.println(doc.getName() + " added to printer");
+    }
+
+    // Print Documents
+    public void print() throws InterruptedException {
+
+        while (!queue.isEmpty()) {
+
+            Thread.sleep(2000);
+
+            Document doc = queue.poll();
+
+            System.out.println(
+                doc.getName() + " (" + doc.getPages()
+                + " pages) is under printing"
+            );
+
+            Thread.sleep(1000L * doc.getPages());
+
+            System.out.println(
+                doc.getName() + " printing is completed"
+            );
+        }
+
+        System.out.println("All documents printed");
+    }
+}
+
+public class Mainclass6 {
+
+    public static void main(String[] args)
+            throws InterruptedException {
+
+        Printer print = new Printer();
+
+        print.addToPrint(new Document("Doc1", 10));
+        print.addToPrint(new Document("Doc2", 12));
+        print.addToPrint(new Document("Doc3", 18));
+
+        print.print();
+    }
+}
+```
+
+### Sample Output
+
+```text
+Doc1 added to printer
+Doc2 added to printer
+Doc3 added to printer
+Doc1 (10 pages) is under printing
+Doc1 printing is completed
+Doc2 (12 pages) is under printing
+Doc2 printing is completed
+Doc3 (18 pages) is under printing
+Doc3 printing is completed
+All documents printed
+```
+
+**Note:** The program includes delays using `Thread.sleep()`. The output above omits the waiting time between messages. Save the file as `Mainclass6.java` inside the `ds_pro` package.
 
 
 ````
