@@ -1217,11 +1217,95 @@ All documents printed
 
 ````
 ````markdown
+# Cyclic Sort
 
+## Question 4
+
+**Problem:**  
+Write a Java program to sort an array containing numbers from `1` to `n` using the Cyclic Sort algorithm.
+
+### Java Code
+
+```java
+import java.util.Arrays;
+
+public class CyclicSort {
+    public static void main(String[] args) {
+
+        int[] arr = {6, 2, 1, 5, 3, 4};
+
+        int i = 0;
+
+        while (i < arr.length) {
+
+            int current = arr[i] - 1;
+
+            if (arr[i] != arr[current]) {
+
+                int temp = arr[i];
+                arr[i] = arr[current];
+                arr[current] = temp;
+
+            } else {
+                i++;
+            }
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+}
+```
+
+### Sample Output
+
+```text
+[1, 2, 3, 4, 5, 6]
+```
 
 ````
 ````markdown
+# Selection Sort
 
+## Question 5
+
+**Problem:**  
+Write a Java program to sort an array in ascending order using the Selection Sort algorithm.
+
+### Java Code
+
+```java
+import java.util.Arrays;
+
+public class SelectionSort {
+    public static void main(String[] args) {
+
+        int[] arr = {6, 2, 1, 5, 3, 4};
+
+        for (int i = 0; i < arr.length - 1; i++) {
+
+            int min = i;
+
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[min]) {
+                    min = j;
+                }
+            }
+
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+}
+```
+
+### Sample Output
+
+```text
+[1, 2, 3, 4, 5, 6]
+```
 
 ````
 ````markdown
