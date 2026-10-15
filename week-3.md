@@ -2,7 +2,7 @@
 
 # Quick Sort
 
-## Question 6
+## Question 5
 
 **Problem:**  
 Write a Java program to sort an array in ascending order using the Quick Sort algorithm.
@@ -10,13 +10,13 @@ Write a Java program to sort an array in ascending order using the Quick Sort al
 ### Java Code
 
 ```java
-package inher_topc;
+package ds_pro;
 
 import java.util.Arrays;
 
-public class quickSort {
+public class QuickSort {
 
-    public void quickSort(int[] arr, int low, int high) {
+    static void quickSort(int[] arr, int low, int high) {
 
         if (low < high) {
 
@@ -27,7 +27,7 @@ public class quickSort {
         }
     }
 
-    public int partition(int[] arr, int low, int high) {
+    static int partition(int[] arr, int low, int high) {
 
         int pivot = high;
         int i = low - 1;
@@ -56,8 +56,7 @@ public class quickSort {
 
         int[] arr = {6, 2, 1, 5, 3, 4};
 
-        quickSort sorter = new quickSort();
-        sorter.quickSort(arr, 0, arr.length - 1);
+        quickSort(arr, 0, arr.length - 1);
 
         System.out.println(Arrays.toString(arr));
     }
