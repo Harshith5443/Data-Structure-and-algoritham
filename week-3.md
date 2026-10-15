@@ -2,7 +2,7 @@
 
 # Quick Sort
 
-## Question 5
+## Question 1
 
 **Problem:**  
 Write a Java program to sort an array in ascending order using the Quick Sort algorithm.
@@ -14,51 +14,48 @@ package ds_pro;
 
 import java.util.Arrays;
 
-public class QuickSort {
+public class quickSort {
 
-    static void quickSort(int[] arr, int low, int high) {
+    public static int partition(int[] arr, int low, int high) {
+
+        int pivot = high;
+        int j = low - 1;
+
+        for (int i = low; i <= high; i++) {
+
+            if (arr[i] <= arr[pivot]) {
+
+                j++;
+
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        return j;
+    }
+
+    public static void quicksort(int[] arr, int low, int high) {
 
         if (low < high) {
 
             int pivot = partition(arr, low, high);
 
-            quickSort(arr, low, pivot - 1);
-            quickSort(arr, pivot + 1, high);
+            quicksort(arr, low, pivot - 1);
+            quicksort(arr, pivot + 1, high);
         }
-    }
-
-    static int partition(int[] arr, int low, int high) {
-
-        int pivot = high;
-        int i = low - 1;
-
-        for (int j = low; j < high; j++) {
-
-            if (arr[j] < arr[pivot]) {
-
-                i++;
-
-                int temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
-            }
-        }
-
-        // Place the pivot in its correct position
-        int temp = arr[i + 1];
-        arr[i + 1] = arr[high];
-        arr[high] = temp;
-
-        return i + 1;
     }
 
     public static void main(String[] args) {
 
-        int[] arr = {6, 2, 1, 5, 3, 4};
+        int[] arr = {5, 8, 7, 6, 9, 1, 2, 3, 4};
 
-        quickSort(arr, 0, arr.length - 1);
+        System.out.println("Before Sorting: " + Arrays.toString(arr));
 
-        System.out.println(Arrays.toString(arr));
+        quicksort(arr, 0, arr.length - 1);
+
+        System.out.println("After Sorting: " + Arrays.toString(arr));
     }
 }
 ```
@@ -66,7 +63,8 @@ public class QuickSort {
 ### Sample Output
 
 ```text
-[1, 2, 3, 4, 5, 6]
+Before Sorting: [5, 8, 7, 6, 9, 1, 2, 3, 4]
+After Sorting: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 ````
