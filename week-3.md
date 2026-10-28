@@ -154,6 +154,231 @@ After Sorting: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 ````
 ````markdown
+# Linked List – Singly Linked List
+
+## Question 3
+
+**Problem:**  
+Write a Java program to implement a singly linked list with the following operations:
+
+- Insert at First
+- Insert at Middle
+- Insert at Last
+- Delete First
+- Delete Middle
+- Delete Last
+- Find an Element
+- Display Linked List
+
+### Java Code
+
+```java
+package linkedlist;
+
+class LL {
+
+    private class Node {
+        private int value;
+        private Node next;
+
+        public Node(int value) {
+            this.value = value;
+        }
+
+        public Node(int value, Node next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public LL() {
+        this.size = 0;
+    }
+
+    // Insert at First
+    public void insertfirst(int val) {
+
+        Node node = new Node(val);
+        node.next = head;
+        head = node;
+
+        if (tail == null) {
+            tail = head;
+        }
+
+        size++;
+    }
+
+    // Insert at Middle
+    public void insertmid(int val, int index) {
+
+        if (index == 0) {
+            insertfirst(val);
+            return;
+        }
+
+        if (index == size) {
+            insertlast(val);
+            return;
+        }
+
+        Node temp = head;
+
+        for (int i = 0; i < index - 1; i++) {
+            temp = temp.next;
+        }
+
+        Node node = new Node(val, temp.next);
+        temp.next = node;
+
+        size++;
+    }
+
+    // Insert at Last
+    public void insertlast(int val) {
+
+        if (tail == null) {
+            insertfirst(val);
+            return;
+        }
+
+        Node node = new Node(val);
+        tail.next = node;
+        tail = node;
+
+        size++;
+    }
+
+    // Delete First
+    public int deletefirst() {
+
+        int val = head.value;
+        head = head.next;
+
+        if (head == null) {
+            tail = null;
+        }
+
+        size--;
+
+        return val;
+    }
+
+    // Delete Middle
+    public int deletemid(int index) {
+
+        if (index == 0) {
+            return deletefirst();
+        }
+
+        if (index == size - 1) {
+            return deletelast();
+        }
+
+        Node prev = get(index - 1);
+        int val = prev.next.value;
+
+        prev.next = prev.next.next;
+        size--;
+
+        return val;
+    }
+
+    // Delete Last
+    public int deletelast() {
+
+        if (size <= 1) {
+            return deletefirst();
+        }
+
+        Node secondlast = get(size - 2);
+        int val = tail.value;
+
+        tail = secondlast;
+        tail.next = null;
+
+        size--;
+
+        return val;
+    }
+
+    // Get Node by Index
+    public Node get(int index) {
+
+        Node node = head;
+
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+
+        return node;
+    }
+
+    // Find Element
+    public Node find(int val) {
+
+        Node node = head;
+
+        while (node != null) {
+
+            if (node.value == val) {
+                return node;
+            }
+
+            node = node.next;
+        }
+
+        return null;
+    }
+
+    // Display Linked List
+    public void display() {
+
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.value + "-->");
+            temp = temp.next;
+        }
+
+        System.out.print("END");
+    }
+}
+
+class Linky {
+
+    public static void main(String[] args) {
+
+        LL l = new LL();
+
+        l.insertfirst(10);
+        l.insertfirst(20);
+        l.insertfirst(30);
+        l.insertlast(40);
+        l.insertmid(50, 2);
+
+        l.display();
+
+        System.out.println();
+
+        System.out.println(l.deletefirst());
+
+        l.display();
+    }
+}
+```
+
+### Sample Output
+
+```text
+30-->20-->50-->10-->40-->END
+30
+20-->50-->10-->40-->END
+```
 
 ````
 ````markdown
