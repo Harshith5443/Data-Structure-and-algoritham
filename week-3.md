@@ -382,9 +382,96 @@ class Linky {
 
 ````
 ````markdown
+# Insertion Sort
+
+## Question 1
+
+**Problem:**  
+Write a Java program to sort an array in ascending order using the Insertion Sort algorithm.
+
+### Java Code
+
+```java
+import java.util.Arrays;
+
+public class InsertionSort {
+    public static void main(String[] args) {
+
+        int[] arr = {5, 8, 7, 6, 9, 1, 2, 3, 4};
+
+        System.out.println("Before Sorting: " + Arrays.toString(arr));
+
+        for (int i = 1; i < arr.length; i++) {
+
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+
+            arr[j + 1] = key;
+        }
+
+        System.out.println("After Sorting: " + Arrays.toString(arr));
+    }
+}
+```
+
+### Sample Output
+
+```text
+Before Sorting: [5, 8, 7, 6, 9, 1, 2, 3, 4]
+After Sorting: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
 
 ````
 ````markdown
+# Cyclic Sort
+
+## Question 2
+
+**Problem:**  
+Write a Java program to sort an array containing numbers from `1` to `n` using the Cyclic Sort algorithm.
+
+### Java Code
+
+```java
+import java.util.Arrays;
+
+public class CyclicSort {
+    public static void main(String[] args) {
+
+        int[] arr = {6, 2, 1, 5, 3, 4};
+
+        int i = 0;
+
+        while (i < arr.length) {
+
+            int current = arr[i] - 1;
+
+            if (arr[i] != arr[current]) {
+
+                int temp = arr[i];
+                arr[i] = arr[current];
+                arr[current] = temp;
+
+            } else {
+                i++;
+            }
+        }
+
+        System.out.println(Arrays.toString(arr));
+    }
+}
+```
+
+### Sample Output
+
+```text
+[1, 2, 3, 4, 5, 6]
+```
 
 ````
 ````markdown
