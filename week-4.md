@@ -757,27 +757,84 @@ null
 
 ````
 ````markdown
+# Reverse a String Using Linked List
 
-````
-````markdown
+## Question 3
 
-````
-````markdown
+**Problem:**  
+Write a Java program to reverse a given string using a Singly Linked List.
 
+### Java Code
 
-````
-````markdown
+```java
+package linkedList;
 
-````
-````markdown
+class Node {
+    char data;
+    Node next;
+}
 
+class StringLinkedList {
 
-````
-````markdown
+    Node head;
 
+    // Insert character at beginning
+    public void insert(char value) {
 
-````
-````markdown
+        Node node = new Node();
+        node.data = value;
+        node.next = head;
+
+        head = node;
+    }
+
+    // Display Linked List
+    public void display() {
+
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data);
+            temp = temp.next;
+        }
+
+        System.out.println();
+    }
+
+    // Reverse String using Linked List
+    public void reverseString(String str) {
+
+        for (int i = 0; i < str.length(); i++) {
+            insert(str.charAt(i));
+        }
+    }
+}
+
+public class MainClass {
+
+    public static void main(String[] args) {
+
+        String str = "HELLO";
+
+        StringLinkedList list = new StringLinkedList();
+
+        System.out.println("Original String: " + str);
+
+        list.reverseString(str);
+
+        System.out.print("Reversed String: ");
+        list.display();
+    }
+}
+```
+
+### Sample Output
+
+```text
+Original String: HELLO
+Reversed String: OLLEH
+```
+
 
 
 ````
