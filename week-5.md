@@ -5,39 +5,27 @@
 ## Question 1
 
 **Problem:**  
-Write a Java program to implement a Binary Search Tree with the following operations:
+Write a Java program to implement a Binary Search Tree (BST) with the following operations:
 
-1. Create a Node and Insert Data
-2. Insert Data into the BST
-3. Preorder Traversal (Root → Left → Right)
-4. Inorder Traversal (Left → Root → Right)
-5. Postorder Traversal (Left → Right → Root)
+1. Create a node path.
+2. Insert data into the BST.
+3. Preorder Traversal (Root, Left, Right).
+4. Inorder Traversal (Left, Root, Right).
+5. Postorder Traversal (Left, Right, Root).
 
 ### Java Code
 
-**Node.java**
-
 ```java
-package binarysearchtree;
-
-public class Node {
-
+class Node {
     int value;
-    Node left;
-    Node right;
+    Node left, right;
 }
-```
 
-**BinarySearchTree.java**
-
-```java
-package binarysearchtree;
-
-public class BinarySearchTree {
+class BinarySearchTree {
 
     Node rootNode;
 
-    // Create Node and Insert Data
+    // Create Node Path
     public Node createNodePath(Node cn, int data) {
 
         if (cn == null) {
@@ -49,13 +37,11 @@ public class BinarySearchTree {
 
             return node;
         }
-
         else if (data < cn.value) {
 
             cn.left = createNodePath(cn.left, data);
             return cn;
         }
-
         else {
 
             cn.right = createNodePath(cn.right, data);
@@ -69,8 +55,7 @@ public class BinarySearchTree {
         rootNode = createNodePath(rootNode, data);
     }
 
-    // Preorder Traversal
-    // Root -> Left -> Right
+    // Preorder: Root, Left, Right
     public void preOrder(Node root) {
 
         if (root == null) {
@@ -83,8 +68,7 @@ public class BinarySearchTree {
         preOrder(root.right);
     }
 
-    // Inorder Traversal
-    // Left -> Root -> Right
+    // Inorder: Left, Root, Right
     public void inOrder(Node root) {
 
         if (root == null) {
@@ -98,8 +82,7 @@ public class BinarySearchTree {
         inOrder(root.right);
     }
 
-    // Postorder Traversal
-    // Left -> Right -> Root
+    // Postorder: Left, Right, Root
     public void postOrder(Node root) {
 
         if (root == null) {
@@ -112,12 +95,6 @@ public class BinarySearchTree {
         System.out.print(root.value + " ");
     }
 }
-```
-
-**MainClass.java**
-
-```java
-package binarysearchtree;
 
 public class MainClass {
 
@@ -126,25 +103,30 @@ public class MainClass {
         BinarySearchTree bst = new BinarySearchTree();
 
         // Insert Data
-        bst.insertData(50);
-        bst.insertData(30);
-        bst.insertData(70);
-        bst.insertData(20);
-        bst.insertData(40);
-        bst.insertData(60);
-        bst.insertData(80);
+        bst.insertData(7);
+        bst.insertData(6);
+        bst.insertData(8);
+        bst.insertData(3);
+        bst.insertData(1);
+        bst.insertData(9);
+        bst.insertData(4);
+        bst.insertData(5);
+        bst.insertData(0);
+        bst.insertData(2);
 
-        // Preorder Traversal
-        System.out.println("\nPreorder Traversal:");
+        // Preorder
+        System.out.println("\n--------- Pre Order ---------");
         bst.preOrder(bst.rootNode);
 
-        // Inorder Traversal
-        System.out.println("\n\nInorder Traversal:");
+        // Inorder
+        System.out.println("\n\n--------- In Order ---------");
         bst.inOrder(bst.rootNode);
 
-        // Postorder Traversal
-        System.out.println("\n\nPostorder Traversal:");
+        // Postorder
+        System.out.println("\n\n--------- Post Order ---------");
         bst.postOrder(bst.rootNode);
+
+        System.out.println();
     }
 }
 ```
@@ -152,34 +134,26 @@ public class MainClass {
 ### Sample Output
 
 ```text
-Node value is: 50
-Node value is: 30
-Node value is: 70
-Node value is: 20
-Node value is: 40
-Node value is: 60
-Node value is: 80
+Node value is: 7
+Node value is: 6
+Node value is: 8
+Node value is: 3
+Node value is: 1
+Node value is: 9
+Node value is: 4
+Node value is: 5
+Node value is: 0
+Node value is: 2
 
-Preorder Traversal:
-50 30 20 40 70 60 80
+--------- Pre Order ---------
+7 6 3 1 0 2 4 5 8 9
 
-Inorder Traversal:
-20 30 40 50 60 70 80
+--------- In Order ---------
+0 1 2 3 4 5 6 7 8 9
 
-Postorder Traversal:
-20 40 30 60 80 70 50
+--------- Post Order ---------
+0 2 1 5 4 3 6 9 8 7
 ```
-
-### Binary Search Tree Structure
-
-```text
-          50
-        /    \
-       30     70
-      / \    / \
-     20  40  60  80
-```
-
 
 ````
 ````markdown
