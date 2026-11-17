@@ -157,6 +157,136 @@ Node value is: 2
 
 ````
 ````markdown
+# Graph Using Adjacency Matrix
+
+## Question 2
+
+**Problem:**  
+Write a Java program to implement a Graph using an Adjacency Matrix with the following operations:
+
+1. Create Graph Nodes.
+2. Create paths (edges) between nodes.
+3. Find neighbours of a given node.
+4. Display the Adjacency Matrix.
+
+### Java Code
+
+```java
+import java.util.ArrayList;
+
+class GraphNode {
+    char ch;
+    int index;
+
+    public GraphNode(char ch, int index) {
+        this.ch = ch;
+        this.index = index;
+    }
+}
+
+class Graphclass {
+
+    ArrayList<GraphNode> list = new ArrayList<GraphNode>();
+    int[][] adjacentMatrix;
+
+    public Graphclass(ArrayList<GraphNode> a1) {
+        this.list = a1;
+        adjacentMatrix = new int[a1.size()][a1.size()];
+    }
+
+    // Create Path
+    public void createPath(int row, int col) {
+        adjacentMatrix[col][row] = adjacentMatrix[row][col] = 1;
+    }
+
+    // Get Neighbours
+    public void getNeighbours(GraphNode node) {
+
+        ArrayList<GraphNode> neighbours = new ArrayList<GraphNode>();
+
+        int row = node.index;
+
+        for (int col = 0; col < adjacentMatrix.length; col++) {
+
+            if (adjacentMatrix[row][col] == 1) {
+                neighbours.add(list.get(col));
+            }
+        }
+
+        System.out.print(node.ch + " -> ");
+
+        for (GraphNode neighbour : neighbours) {
+            System.out.print(neighbour.ch + ", ");
+        }
+    }
+
+    // Print Adjacency Matrix
+    public void printMatrix() {
+
+        for (int i = 0; i < adjacentMatrix.length; i++) {
+            System.out.print("  " + list.get(i).ch);
+        }
+
+        System.out.println();
+
+        for (int i = 0; i < adjacentMatrix.length; i++) {
+
+            System.out.print(list.get(i).ch);
+
+            for (int j : adjacentMatrix[i]) {
+                System.out.print(" " + j + " ");
+            }
+
+            System.out.println();
+        }
+    }
+}
+
+public class Mainclass {
+
+    public static void main(String[] args) {
+
+        ArrayList<GraphNode> list = new ArrayList<GraphNode>();
+
+        list.add(new GraphNode('A', 0));
+        list.add(new GraphNode('B', 1));
+        list.add(new GraphNode('C', 2));
+        list.add(new GraphNode('D', 3));
+        list.add(new GraphNode('E', 4));
+
+        Graphclass gc = new Graphclass(list);
+
+        // Create Paths
+        gc.createPath(0, 1);
+        gc.createPath(0, 2);
+        gc.createPath(0, 3);
+        gc.createPath(1, 4);
+        gc.createPath(2, 3);
+        gc.createPath(3, 4);
+
+        // Print Adjacency Matrix
+        gc.printMatrix();
+
+        System.out.println("---------------------------------");
+
+        // Get Neighbours of A
+        gc.getNeighbours(list.get(0));
+    }
+}
+```
+
+### Sample Output
+
+```text
+  A  B  C  D  E
+A 0  1  1  1  0
+B 1  0  0  0  1
+C 1  0  0  1  0
+D 1  0  1  0  1
+E 0  1  0  1  0
+---------------------------------
+A -> B, C, D,
+```
 
 
 ````
